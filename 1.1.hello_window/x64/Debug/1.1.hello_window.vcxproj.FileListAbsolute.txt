@@ -1,0 +1,1 @@
+Y:\dev\learn_opengl\1.1.hello_window\x64\Debug\1.1.hello_window.exe
