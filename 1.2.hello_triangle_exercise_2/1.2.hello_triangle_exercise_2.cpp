@@ -129,35 +129,29 @@ int main()
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
 
+	// ------------------------------
+	// Generate and bind VAOs, VBOs
+	// ------------------------------
+	unsigned int VAOs[2], VBOs[2];
+	glGenVertexArrays(2, VAOs);
+	glGenBuffers(2, VBOs);
+	
 
 	// FIRST TRIANGLE
-	// ------------------------------
-	// Generate and bind VAO_a, VBO_a
-	// ------------------------------
-	unsigned int VBO_a, VAO_a;
-	glGenVertexArrays(1, &VAO_a);
-	glGenBuffers(1, &VBO_a);
-	glBindVertexArray(VAO_a);
+	// --------------
+	glBindVertexArray(VAOs[0]);
 
-	// Generate and bind VBO_a
-	// ---------------------
-	glBindBuffer(GL_ARRAY_BUFFER, VBO_a);
+	glBindBuffer(GL_ARRAY_BUFFER, VBOs[0]);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices_a), vertices_a, GL_STATIC_DRAW); 
 
-	// Set vertex attribute pointer (for the VAO_a to access VBO_a)
-	// --------------------------------------------------------
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, (void*)0);  // first param tells the attribute location for shader to access (location = 0)
-	glEnableVertexAttribArray(0);  //  b/c it is disabled by default 
-	
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, (void*)0);  
+	glEnableVertexAttribArray(0);  
 	
 	// SECOND TRIANGLE
-	// --------------------------------
-	unsigned int VAO_b, VBO_b;
-	glGenVertexArrays(1, &VAO_b);
-	glGenBuffers(1, &VBO_b);
-	glBindVertexArray(VAO_b);
+	// ---------------
+	glBindVertexArray(VAOs[1]);
 
-	glBindBuffer(GL_ARRAY_BUFFER, VBO_b);
+	glBindBuffer(GL_ARRAY_BUFFER, VBOs[1]);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices_b), vertices_b, GL_STATIC_DRAW);
 
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, (void*)0);
@@ -179,11 +173,13 @@ int main()
 
 		// activate shader programm, bind VAO and draw
 		// -----------------------
-		//std::cout << "draw" << std::endl;
+		// std::cout << "draw" << std::endl;
 		glUseProgram(shaderProgram);
-		glBindVertexArray(VAO_b);
+
+		glBindVertexArray(VAOs[0]);	// first triangle
 		glDrawArrays(GL_TRIANGLES, 0, 3);
-		glBindVertexArray(VAO_a);
+
+		glBindVertexArray(VBOs[1]); // second triangle
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 
 		// swap buffer and poll events
