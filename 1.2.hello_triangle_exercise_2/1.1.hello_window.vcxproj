@@ -24,7 +24,7 @@
     <ProjectGuid>{2c9d9c10-9e97-4f2f-b8ae-74be0f6a6403}</ProjectGuid>
     <RootNamespace>My11hellowindow</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>1.2.hello_triangle_exercise_1</ProjectName>
+    <ProjectName>1.2.hello_triangle_exercise_2</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -153,7 +153,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="glad.c" />
-    <ClCompile Include="1.2.hello_triangle_exercise_1.cpp" />
+    <ClCompile Include="1.2.hello_triangle_exercise_2.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

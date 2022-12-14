@@ -18,7 +18,7 @@
     <ClCompile Include="glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="1.2.hello_triangle_exercise_1.cpp">
+    <ClCompile Include="1.2.hello_triangle_exercise_2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

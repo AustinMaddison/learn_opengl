@@ -1,3 +1,6 @@
+/// Now create the same 2 triangles using two different VAOs and VBOs for their data.
+
+
 #include <iostream>
 
 #include <glad/glad.h>
@@ -9,22 +12,20 @@ const unsigned int SCR_HEIGHT = 600;
 void frame_buffer_size_callback(GLFWwindow* window, int height, int width);
 void process_input(GLFWwindow* window);
 
-float vertices[] =
+float vertices_a[] =
 {
 	// first triangle
 	-0.50f,   0.50f,  0.0f,
 	-0.10f,  -0.50f,  0.0f,
 	-0.90f,  -0.50f,  0.0f,
+};
 
+float vertices_b[] =
+{
 	// second triangle
 	 0.50f,  0.50f,  0.0f,
 	 0.90f, -0.50f,  0.0f,
 	 0.10f, -0.50f,  0.0f
-};
-
-unsigned int indices[] = {
-	0, 1, 2,  // right triangle
-	3, 4, 5	  // left triangle
 };
 
 // Shaders
@@ -76,38 +77,6 @@ int main()
 		return -1;
 	}
 
-	// Generate and bind VAO
-// ---------------------
-	unsigned int VAO;
-	glGenVertexArrays(1, &VAO);
-	glBindVertexArray(VAO);
-
-	// Generate and bind VBO
-	// ---------------------
-	unsigned int VBO;	// VERTEX BUFFER OBJECT - we store the ID here
-	glGenBuffers(1, &VBO);
-	glBindBuffer(GL_ARRAY_BUFFER, VBO); // Bind the new vbo to vertex buffer object which is GL_ARRAY_BUFFER
-	// any buffer calls made now will be will be made on the GL_ARRAY_BUFFER target (the VBO)
-
-	// function that copies user defined data into the currently bound buffer which happens to be the VBO
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);  // GL_STATIC_DRAW - the data is only set once, and used many times.	
-
-
-	// Generate and binf EBO
-	// ---------------------
-	unsigned int EBO;
-	glGenBuffers(1, &EBO);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-	
-
-
-
-	// Set vertex attribute pointer (for the VAO to access VBO)
-	// --------------------------------------------------------
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, (void*)0);  // first param tells the attribute location for shader to access (location = 0)
-	glEnableVertexAttribArray(0);  //  b/c it is disabled by default 
-
 
 	// Vertex shader: create and compile
 	// ---------------------------------
@@ -123,8 +92,7 @@ int main()
 	{
 		glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
 		std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
-	} 
-	
+	}
 
 	// Fragment shader: create and compile
 	// -----------------------------------
@@ -154,13 +122,50 @@ int main()
 		glad_glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
 		std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
 	}
-	
+
 	// delete shader objects, no longer need them
 	// ------------------------------------------
 
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
 
+
+	// FIRST TRIANGLE
+	// ------------------------------
+	// Generate and bind VAO_a, VBO_a
+	// ------------------------------
+	unsigned int VBO_a, VAO_a;
+	glGenVertexArrays(1, &VAO_a);
+	glGenBuffers(1, &VBO_a);
+	glBindVertexArray(VAO_a);
+
+	// Generate and bind VBO_a
+	// ---------------------
+	glBindBuffer(GL_ARRAY_BUFFER, VBO_a);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices_a), vertices_a, GL_STATIC_DRAW); 
+
+	// Set vertex attribute pointer (for the VAO_a to access VBO_a)
+	// --------------------------------------------------------
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, (void*)0);  // first param tells the attribute location for shader to access (location = 0)
+	glEnableVertexAttribArray(0);  //  b/c it is disabled by default 
+	
+	
+	// SECOND TRIANGLE
+	// --------------------------------
+	unsigned int VAO_b, VBO_b;
+	glGenVertexArrays(1, &VAO_b);
+	glGenBuffers(1, &VBO_b);
+	glBindVertexArray(VAO_b);
+
+	glBindBuffer(GL_ARRAY_BUFFER, VBO_b);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices_b), vertices_b, GL_STATIC_DRAW);
+
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, (void*)0);
+	glEnableVertexAttribArray(0);
+
+
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	
 	// render loop
 	// -----------
 	while (!glfwWindowShouldClose(window))
@@ -176,10 +181,10 @@ int main()
 		// -----------------------
 		//std::cout << "draw" << std::endl;
 		glUseProgram(shaderProgram);
-		glBindVertexArray(VAO);
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-		//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
+		glBindVertexArray(VAO_b);
+		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glBindVertexArray(VAO_a);
+		glDrawArrays(GL_TRIANGLES, 0, 3);
 
 		// swap buffer and poll events
 		glfwSwapBuffers(window);
