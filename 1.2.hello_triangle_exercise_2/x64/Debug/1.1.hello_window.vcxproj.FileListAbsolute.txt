@@ -1,0 +1,5 @@
+Y:\dev\learn_opengl\1.1.hello_window\x64\Debug\1.1.hello_window.exe
+Y:\dev\learn_opengl\1.2.hello_triangle\x64\Debug\1.2.hello_triangle.exe
+Y:\dev\learn_opengl\1.2.hello_triangle_ebo\x64\Debug\1.2.hello_triangle_ebo.exe
+Y:\dev\learn_opengl\1.2.hello_triangle_exercises\x64\Debug\1.2.hello_triangle_exercises.exe
+Y:\dev\learn_opengl\1.2.hello_triangle_exercise_2\x64\Debug\1.2.hello_triangle_exercise_1.exe
