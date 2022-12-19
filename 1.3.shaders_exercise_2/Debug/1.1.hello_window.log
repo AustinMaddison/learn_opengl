@@ -1,0 +1,3 @@
+﻿  glad.c
+  hello_window.cpp
+LINK : fatal error LNK1104: cannot open file 'glfw.lib'

@@ -1,0 +1,8 @@
+Y:\dev\learn_opengl\1.1.hello_window\x64\Debug\1.1.hello_window.exe
+Y:\dev\learn_opengl\1.2.hello_triangle\x64\Debug\1.2.hello_triangle.exe
+Y:\dev\learn_opengl\1.3.shaders\x64\Debug\1.3.shaders.exe
+Y:\dev\learn_opengl\1.3.shaders_more_attributes\x64\Debug\1.3.shaders_more_attributes.exe
+Y:\dev\learn_opengl\1.3.shaders_shader_class\x64\Debug\1.3.shaders_shader_class.exe
+Y:\dev\learn_opengl\1.3.shaders_exercise_1\x64\Debug\1.3.shaders_exercise_1.exe
+Y:\dev\learn_opengl\1.3.shaders_exercise_2\x64\Debug\1.3.shaders_exercise_2.exe
+Y:\dev\learn_opengl\1.3.shaders_exercise_3\x64\Debug\1.3.shaders_exercise_3.exe
