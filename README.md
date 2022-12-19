@@ -1,7 +1,7 @@
 # Learning OpenGL
 > Implementation following [learnopengl.com](learnopengl.com) chapters.  
 ---
-> **Disclaimer**: the file structure is very awkward bc every subsequent solution is a copy of the last solution I was working on thus build files thus build files accumulate. Hope to clean up after finishing all chapters.
+> **Disclaimer**: the file structure is very awkward bc every subsequent solution is a copy of the last solution I was working on thus there is a lot of accumalated build files as a side effect. Hope to clean up after finishing all chapters.
 ---
 # Chapters
 ### Geting Started
