@@ -1,8 +1,11 @@
 #version 330
 
-in vec4 vertexColor;
+uniform float uTime;
+
+in vec3 vertexColor;
 out vec4 fragColor;
+
 void main()
 {
-    fragColor = vertexColor;
+	fragColor = vec4(vertexColor, 1.0);
 }

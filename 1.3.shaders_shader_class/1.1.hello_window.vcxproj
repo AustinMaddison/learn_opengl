@@ -152,8 +152,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="1.3.shaders_shader_class_recall.cpp" />
     <ClCompile Include="glad.c" />
-    <ClCompile Include="1.3.shaders_shader_class.cpp" />
     <ClCompile Include="Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
